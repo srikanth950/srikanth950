@@ -8,23 +8,23 @@ terraform {
 }
 
 provider "aws" {
-   access_key = "AKIAUFITGSV6KYNEHFUR"
+   access_key = "AKIAX7WIAPV24DEGLB5M"
 
-  secret_key = "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"
+  secret_key = "A7a16U6ckGJxNI+K7+mKwKKeU18yrk6U+ZdV664q"
   
   region     = "ap-south-1"
 }
 resource "aws_vpc" "vpc" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = "172.31.0.0/16"
   instance_tenancy = "default"
 
   tags = {
-    Name = "shiva_vpc_1"
+    Name = "newterra"
   }
 }
 resource "aws_subnet" "Pub" {
   vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = "172.31.1.0/14"
 
   tags = {
     Name = "Public"
@@ -97,7 +97,7 @@ resource "aws_instance" "ubuntu_1" {
   associate_public_ip_address = true
   subnet_id = aws_subnet.Pub.id
   vpc_security_group_ids = [aws_security_group.sg.id]
-  key_name               = "pullarao"
+  key_name               = "awsclass"
  tags = {
     Name = "ansible_server"
   }
@@ -145,7 +145,7 @@ resource "aws_instance" "ubuntu2" {
   associate_public_ip_address = true
   subnet_id = aws_subnet.Pub.id
   vpc_security_group_ids = [aws_security_group.sg_1.id]
-  key_name               = "pullarao"
+  key_name               = "awsclass"
  tags = {
     Name = "apache_server"
   }
@@ -162,7 +162,7 @@ resource "aws_instance" "ubuntu_3" {
   associate_public_ip_address = true
   subnet_id = aws_subnet.Pub.id
   vpc_security_group_ids = [aws_security_group.sg.id]
-  key_name               = "pullarao"
+  key_name               = "awsclass"
  tags = {
     Name = "k8worker_server"
   }
@@ -173,7 +173,7 @@ resource "aws_instance" "ubuntu_4" {
   associate_public_ip_address = true
   subnet_id = aws_subnet.Pub.id
   vpc_security_group_ids = [aws_security_group.sg.id]
-  key_name               = "pullarao"
+  key_name               = "awsclass"
  tags = {
     Name = "k8master_server"
   }
